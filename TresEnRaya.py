@@ -76,6 +76,7 @@ def jugarPartida():
         turno = cambiarTurno(turno)
         acabarPartida = comprobarTresEnRaya(tablero)
     
+    mostrarTablero(tablero)
     print('ganador: ', cambiarTurno(turno))
 
 
