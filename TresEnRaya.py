@@ -1,4 +1,5 @@
 # Código tres en raya
+# TODO Falta comprobar si hay empate
 
 def mostrarTablero(tablero):
     print('   1', ' 2', ' 3', end = '')
