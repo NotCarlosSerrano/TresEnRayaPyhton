@@ -1,1 +1,1 @@
-Pequeño proyecto de crear un bot para jugar contra el en twitter
+Pequeño proyecto de crear un bot para jugar contra él en twitter
