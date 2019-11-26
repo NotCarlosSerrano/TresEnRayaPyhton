@@ -1,5 +1,4 @@
 # Código tres en raya
-# TODO Falta comprobar si hay empate
 
 
 def mostrarTablero(tablero):
@@ -86,6 +85,8 @@ def jugarPartida():
     print('¿Listo para jugar al tres en raya? ¡Empezemos!')
 
     while not acabarPartida:
+        print()
+        print('Turno: ', turno)
         mostrarTablero(tablero)
         hacerMovimiento(tablero, turno)
         turno = cambiarTurno(turno)
