@@ -1,16 +1,19 @@
 # Código tres en raya
 # TODO Falta comprobar si hay empate
 
+
 def mostrarTablero(tablero):
-    print('   1', ' 2', ' 3', end = '')
+    print('   1', ' 2', ' 3', end='')
     for x in range(len(tablero)):
         print()
-        print(x+1, ' ', end = '')
+        print(x+1, ' ', end='')
         for y in range(len(tablero)):
-            print(tablero[x][y], ' ', end = '')
+            print(tablero[x][y], ' ', end='')
     print()
 
 # Devuelve True si inserta el movimiento, en caso contrario devuelve False
+
+
 def insertarMovimiento(tablero, columna, fila, turno):
     if (tablero[fila-1][columna-1] == ' '):
         tablero[fila-1][columna-1] = turno
@@ -18,13 +21,15 @@ def insertarMovimiento(tablero, columna, fila, turno):
     else:
         return False
 
-def pedirNum(frase = ''):
+
+def pedirNum(frase=''):
     columna = -1
     while(columna < 1 or columna > 3):
         if (frase != ''):
-            print(frase, end = '')
+            print(frase, end='')
         columna = int(input())
     return columna
+
 
 def comprobarTresEnRaya(tablero):
     if (tablero[0][0] == tablero[0][1] and tablero[0][0] == tablero[0][2] and tablero[0][0] != ' '):
@@ -46,15 +51,24 @@ def comprobarTresEnRaya(tablero):
     else:
         return False
 
+
+def comprobarEmpate(tablero):
+    if (tablero[0][0] != ' ' and tablero[0][1] != ' ' and tablero[0][2] != ' ' and tablero[1][0] != ' ' and tablero[1][1] != ' ' and tablero[1][2] != ' ' and tablero[2][0] != ' ' and tablero[2][1] != ' ' and tablero[2][2] != ' '):
+        return True
+    else:
+        return False
+
+
 def cambiarTurno(turno):
     if (turno == 'O'):
         return 'X'
     else:
         return 'O'
 
+
 def hacerMovimiento(tablero, turno):
     movimientoValido = False
-    
+
     while not movimientoValido:
         columna = pedirNum('Columna: ')
         fila = pedirNum('Fila: ')
@@ -62,24 +76,29 @@ def hacerMovimiento(tablero, turno):
         if (not movimientoValido):
             print('movimiento ilegal')
 
+
 def jugarPartida():
     tablero = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
     turno = 'X'
-    
+
     acabarPartida = False
 
     print('¿Listo para jugar al tres en raya? ¡Empezemos!')
-
 
     while not acabarPartida:
         mostrarTablero(tablero)
         hacerMovimiento(tablero, turno)
         turno = cambiarTurno(turno)
         acabarPartida = comprobarTresEnRaya(tablero)
-    
-    mostrarTablero(tablero)
-    print('ganador: ', cambiarTurno(turno))
+        empate = comprobarEmpate(tablero)
+        if empate:
+            break
 
+    mostrarTablero(tablero)
+    if empate and not acabarPartida:
+        print('Empate')
+    else:
+        print('ganador: ', cambiarTurno(turno))
 
 
 jugarPartida()
