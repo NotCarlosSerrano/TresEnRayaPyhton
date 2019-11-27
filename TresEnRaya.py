@@ -29,6 +29,7 @@ def comprobarPosibleTresEnRaya(tablero, i, x, turnoHumano):
             return i, x-1
         # Comprobar abajo-xzquxerda y arrxba-derecha
         elif tablero[i-1][x+1] == turnoHumano and tablero[i+1][x-1] == ' ':
+            print('entro aqui ')
             return i+1, x-1
         # Comprobar xzquxerda y derecha
         elif tablero[i-1][x] == turnoHumano and tablero[i+1][x] == ' ':
@@ -107,7 +108,7 @@ def movRandom(tablero):
                 listaI.append(i)
 
     numRandom = randint(0, len(listaX))
-
+    numRandom -= 1
     num1 = listaI[numRandom]
     num2 = listaX[numRandom]
 
@@ -215,23 +216,31 @@ def movMaquina(tablero, turnoMaquina):
     except:
         print('no existe')
 
+    movRealizado2 = False
+
     if not movRealizado:
         for x in range(len(tablero)):
             for i in range(len(tablero)):
                 if tablero[x][i] == turnoHumano:
                     movimientos = comprobarPosibleTresEnRaya(tablero, i, x, turnoHumano)
+                    if x == 1 and i == 1 and movimientos[0] != 1 and movimientos[1] != 1:
+                        insertarMovimiento(tablero, movimientos[1], movimientos[0], turnoMaquina)
+                        movRealizado2 = True
 
-        fila = movimientos[0]
-        columna = movimientos[1]
+        # Si hay una en el centro esa mandará
+        if not movRealizado2:
 
-        if tablero[fila][columna] == ' ':
-            insertarMovimiento(tablero, columna, fila, turnoMaquina)
-        elif tablero[1][1] == ' ':
-            insertarMovimiento(tablero, 1, 1, turnoMaquina)
-        else:
-            print('mov random')
-            movRandoms = movRandom(tablero)
-            insertarMovimiento(tablero, movRandoms[0], movRandoms[1], turnoMaquina)
+            fila = movimientos[0]
+            columna = movimientos[1]
+
+            if tablero[fila][columna] == ' ':
+                insertarMovimiento(tablero, columna, fila, turnoMaquina)
+            elif tablero[1][1] == ' ':
+                insertarMovimiento(tablero, 1, 1, turnoMaquina)
+            else:
+                print('mov random')
+                movRandoms = movRandom(tablero)
+                insertarMovimiento(tablero, movRandoms[0], movRandoms[1], turnoMaquina)
 
 
 def jugarPartida():
