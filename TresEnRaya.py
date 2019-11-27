@@ -85,42 +85,43 @@ def movMaquina(tablero, turnoMaquina):
     for x in range(len(tablero)):
         for i in range(len(tablero)):
             if tablero[x][i] == turnoHumano:
-                print(comprobarPosibleTresEnRaya(tablero, x, i, turnoHumano))
+                print('esto:', comprobarPosibleTresEnRaya(tablero, i, x, turnoHumano))
     
 
-def comprobarPosibleTresEnRaya(tablero, x, i, turnoHumano):
+def comprobarPosibleTresEnRaya(tablero, i, x, turnoHumano):
     
     # Está en el medio
     if x == 1 and i == 1:
         # Comprobar arriba-izquierda y abajo-derecha
-        if tablero[x-i][i-1] == turnoHumano and tablero[x+1][i+1] == ' ':
-            return x+1, i+1
+        if tablero[i-1][x-1] == turnoHumano and tablero[i+1][x+1] == ' ':
+            return i+1, x+1
         # Comprobar arriba y abajo
-        elif tablero[x][i-1] == turnoHumano and tablero[x][i+1] == ' ':
-            return x, i+1
+        elif tablero[i][x-1] == turnoHumano and tablero[i][x+1] == ' ':
+            return i, x+1
         # Comprobar arriba-derecha y abajo-izquierda
-        elif tablero[x+1][i-1] == turnoHumano and tablero[x-1][i+1] == ' ':
-            return x-1, i+1
+        elif tablero[i+1][x-1] == turnoHumano and tablero[i-1][x+1] == ' ':
+            return i-1, x+1
         # Comprobar derecha e izquierda
-        elif tablero[x+1][i] == turnoHumano and tablero[x-1][i] == ' ':
-            return x+1, i
-        # Comprobar abajo-derecha y arriba-izquierda
-        elif tablero[x+1][i+1] == turnoHumano and tablero[x-1][i-1] == ' ':
-            return x-1, i-1
-        # Comprobar abajo y arriba
-        elif tablero[x][i+1] == turnoHumano and tablero[x][i-1] == ' ':
-            return x, i-1
-        # Comprobar abajo-izquierda y arriba-derecha
-        elif tablero[x-1][i+1] == turnoHumano and tablero[x+1][i-1] == ' ':
-            return x+1, i-1
-        # Comprobar izquierda y derecha
-        elif tablero[x-1][i] == turnoHumano and tablero[x+1][i] == ' ':
-            return x+1, i
+        elif tablero[i+1][x] == turnoHumano and tablero[i-1][x] == ' ':
+            return i+1, x
+        # Comprobar abajo-derecha y arrxba-xzquxerda
+        elif tablero[i+1][x+1] == turnoHumano and tablero[i-1][x-1] == ' ':
+            return i-1, x-1
+        # Comprobar abajo y arrxba
+        elif tablero[i][x+1] == turnoHumano and tablero[i][x-1] == ' ':
+            return i, x-1
+        # Comprobar abajo-xzquxerda y arrxba-derecha
+        elif tablero[i-1][x+1] == turnoHumano and tablero[i+1][x-1] == ' ':
+            return i+1, x-1
+        # Comprobar xzquxerda y derecha
+        elif tablero[i-1][x] == turnoHumano and tablero[i+1][x] == ' ':
+            return i+1, x
         # Devolvemos el mismo valor para decir que no hay ninguna posibilidad de hacer tres en raya
         else:
-            return x, i
+            return i, x
     else:
         print('else')
+        return i, x
     
 
 def jugarPartida():
