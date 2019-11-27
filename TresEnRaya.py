@@ -256,6 +256,10 @@ def jugarPartida():
         print('Turno: ', turno)
         mostrarTablero(tablero)
         hacerMovimiento(tablero, turno)
+        acabarPartida = comprobarTresEnRaya(tablero)
+        empate = comprobarEmpate(tablero)
+        if empate or acabarPartida:
+            break
         turno = cambiarTurno(turno)
         movMaquina(tablero, turno)
         acabarPartida = comprobarTresEnRaya(tablero)
