@@ -257,11 +257,11 @@ def jugarPartida():
         mostrarTablero(tablero)
         hacerMovimiento(tablero, turno)
         turno = cambiarTurno(turno)
+        movMaquina(tablero, turno)
         acabarPartida = comprobarTresEnRaya(tablero)
         empate = comprobarEmpate(tablero)
         if empate or acabarPartida:
             break
-        movMaquina(tablero, turno)
         turno = cambiarTurno(turno)
 
     mostrarTablero(tablero)
