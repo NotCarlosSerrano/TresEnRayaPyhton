@@ -230,17 +230,34 @@ def movMaquina(tablero, turnoMaquina):
         # Si hay una en el centro esa mandará
         if not movRealizado2:
 
-            fila = movimientos[0]
-            columna = movimientos[1]
+            try:
+                fila = movimientos[0]
+                columna = movimientos[1]
 
-            if tablero[fila][columna] == ' ':
-                insertarMovimiento(tablero, columna, fila, turnoMaquina)
-            elif tablero[1][1] == ' ':
-                insertarMovimiento(tablero, 1, 1, turnoMaquina)
-            else:
-                print('mov random')
+                if tablero[fila][columna] == ' ':
+                    insertarMovimiento(tablero, columna, fila, turnoMaquina)
+                elif tablero[1][1] == ' ':
+                    insertarMovimiento(tablero, 1, 1, turnoMaquina)
+                elif tablero[0][0] == ' ' and tablero[2][0] == ' ' and tablero[0][2] == ' ' and tablero[2][2] == ' ':
+                    numRandom = randint(0, 3)
+                    if numRandom == 0:
+                        insertarMovimiento(tablero, 0, 0, turnoMaquina)
+                    elif numRandom == 1:
+                        insertarMovimiento(tablero, 2, 0, turnoMaquina)
+                    elif numRandom == 2:
+                        insertarMovimiento(tablero, 0, 2, turnoMaquina)
+                    else:
+                        insertarMovimiento(tablero, 2, 2, turnoMaquina)
+                else:
+                    print('mov random')
+                    movRandoms = movRandom(tablero)
+                    insertarMovimiento(tablero, movRandoms[0], movRandoms[1], turnoMaquina)
+                    
+            except:
                 movRandoms = movRandom(tablero)
                 insertarMovimiento(tablero, movRandoms[0], movRandoms[1], turnoMaquina)
+
+            
 
 
 def jugarPartida():
@@ -273,6 +290,5 @@ def jugarPartida():
         print('Empate')
     else:
         print('ganador: ', turno)
-
 
 jugarPartida()
