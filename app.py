@@ -214,7 +214,7 @@ def movMaquina(tablero, turnoMaquina):
             insertarMovimiento(tablero, columna, fila, turnoMaquina)
             movRealizado = True
     except:
-        print('no existe')
+        pass
 
     movRealizado2 = False
 
@@ -257,10 +257,8 @@ def movMaquina(tablero, turnoMaquina):
                 movRandoms = movRandom(tablero)
                 insertarMovimiento(tablero, movRandoms[0], movRandoms[1], turnoMaquina)
 
-            
 
-
-def jugarPartida():
+if __name__ == '__main__':
     tablero = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
     turno = 'X'
     print(len(tablero))
@@ -290,5 +288,3 @@ def jugarPartida():
         print('Empate')
     else:
         print('ganador: ', turno)
-
-jugarPartida()
